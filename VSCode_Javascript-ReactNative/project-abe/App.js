@@ -1,20 +1,35 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 
+//styling
+import { mainBGColor } from './AppStyling/Colors';
+
+//components
+import AppBarMenu from './Components/Menus/AppBarMenu';
+
+//testing components
 import ProfileMain from './Components/Profile/ProfileMain';
 import IncreaseDecreaseCalc from './Components/Calculators/IncDecSingleRow';
 
+
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={appStyles.fullContainer}>
+      <AppBarMenu />
       {/* <ProfileMain /> */}
-      <IncreaseDecreaseCalc />
-    </SafeAreaView>
+      <View style={appStyles.viewingContainer}>
+        <IncreaseDecreaseCalc />
+      </View>
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    margin: 40
-}
+const appStyles = StyleSheet.create({
+  fullContainer: {
+    flex: 1,
+    backgroundColor: mainBGColor
+  },
+  viewingContainer: {
+    
+  }
 });
