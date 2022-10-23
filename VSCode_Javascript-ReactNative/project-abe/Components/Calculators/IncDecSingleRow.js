@@ -1,23 +1,21 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Button, TextInput } from "react-native";
+import { View, Text, StyleSheet, TextInput } from "react-native";
 
 //styling imports
-import { activeButtonColor, inactiveButtonColor } from "../../AppStyling/Colors";
+import styles from "../../AppStyling/Styles";
+
+//component imports
+import GenButton from "../Buttons/GenButton";
+import ChoiceButton from "../Buttons/ChoiceButton";
 
 export default function IncDecCalc() {
     const [incDec, setIncDec] = useState('inc')
-    const [decColor, setDecColor] = useState(inactiveButtonColor)
-    const [incColor, setIncColor] = useState(activeButtonColor)
 
     function decClick() {
-        setDecColor(activeButtonColor)
-        setIncColor(inactiveButtonColor)
         setIncDec('dec')
     }
 
     function incClick() {
-        setIncColor(activeButtonColor)
-        setDecColor(inactiveButtonColor)
         setIncDec('inc')
     }
 
@@ -45,89 +43,58 @@ export default function IncDecCalc() {
     }
 
     function copyClick() {
-        
+
     }
 
     function resetClick() {
         setIncDec('inc')
         setStartCount('')
         setStitchDif('')
-        setIncColor(activeButtonColor)
-        setDecColor(inactiveButtonColor)
         setResult('Result will display here after calculation')
     }
 
 
     return (
         <View>
-            <Text>Calculator for Single Increases and Decreases</Text>
+            <Text style={styles.sectionHeader}>Calculator for Single Increases and Decreases</Text>
+            <View style={incDecCalcStyles.contentContainer}>
+                <View style={styles.multiButtonRow}>
+                    <ChoiceButton pressFunc={incClick} btnText='Increase' active={incDec === 'inc' ? true : false} />
+                    <View style={{ width: 10 }} />
+                    <ChoiceButton pressFunc={decClick} btnText='Decrease' active={incDec === 'dec' ? true : false} />
+                </View>
 
-            <View style={incDecCalcStyles.choiceButtons}>
-                <Button
-                    title="Increase"
-                    onPress={incClick}
-                    color={incColor}
-                />
-                <View style={{ width: 10 }} />
-                <Button
-                    title="Decrease"
-                    onPress={decClick}
-                    color={decColor}
-                />
-            </View>
+                <Text>Starting Stitch Count</Text>
+                <TextInput style={styles.textInput} value={startCount} onChangeText={setStartCount} keyboardType='number-pad' />
 
-            <Text>Starting Stitch Count</Text>
-            <TextInput style={incDecCalcStyles.textInput} value={startCount} onChangeText={setStartCount} keyboardType='number-pad' />
+                <Text>Stitches to <Text style={styles.importantText}>{incDec === "inc" ? "increase" : "decrease"}</Text> by</Text>
+                <TextInput style={styles.textInput} value={stitchDif} onChangeText={setStitchDif} keyboardType='number-pad' />
 
-            <Text>Stitches to <Text style={incDecCalcStyles.changingText}>{incDec === "inc" ? "increase" : "decrease"}</Text> by</Text>
-            <TextInput style={incDecCalcStyles.textInput} value={stitchDif} onChangeText={setStitchDif} keyboardType='number-pad' />
+                <Text>Ending stitch count would be <Text style={styles.importantText}>{endCount()}</Text></Text>
 
-            <Text>Ending stitch count would be <Text style={incDecCalcStyles.changingText}>{endCount()}</Text></Text>
+                <GenButton pressFunc={calcClick} btnText='Calculate' />
 
-            <Button
-                title="Calculate"
-                onPress={calcClick}
-            />
+                <Text style={incDecCalcStyles.resultBox}>{result}</Text>
 
-            <Text style={incDecCalcStyles.resultBox}>{result}</Text>
-
-            <View style={incDecCalcStyles.choiceButtons}>
-                <Button
-                    title="Copy"
-
-                />
-                <View style={{ width: 10 }} />
-                <Button
-                    title="Reset"
-                    onPress={resetClick}
-                />
+                <View style={styles.multiButtonRow}>
+                    <GenButton pressFunc={copyClick} btnText='Copy' />
+                    <View style={{ width: 10 }} />
+                    <GenButton pressFunc={resetClick} btnText='Reset' />
+                </View>
             </View>
         </View>
     )
 }
 
-
-
-
 const incDecCalcStyles = StyleSheet.create({
-    choiceButtons: {
-        flexDirection: 'row',
-        justifyContent: 'center'
-    },
-    textInput: {
-        borderColor: 'black',
-        borderWidth: 1,
-        paddingLeft: 5
-    },
-    changingText: {
-        fontWeight: 'bold',
-        color: 'red'
+    contentContainer: {
+        margin: 10
     },
     resultBox: {
         height: 200,
         borderColor: 'black',
         borderWidth: 1,
-        margin: 10,
+        marginVertical: 10,
         padding: 5,
         textAlignVertical: 'center'
     }
