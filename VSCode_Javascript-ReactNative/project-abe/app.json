@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-app-icon.png",
+        "foregroundImage": "./assets/adaptive-app-icon-01.png",
         "backgroundColor": "#ACC18A"
       }
     },
