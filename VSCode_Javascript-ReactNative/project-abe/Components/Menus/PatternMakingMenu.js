@@ -3,12 +3,14 @@ import { View, Text, StyleSheet, TextInput } from "react-native";
 import { NativeRouter, Route, Link, Routes } from "react-router-native";
 import PatternForm from "../PatternMaking/PatternForm";
 
+import styles from "../../AppStyling/Styles";
+
 export default function PatternMakingMenu() {
     return (
         <View>
-                <Text>Pattern Making</Text>
+                <Text style={styles.menuTitle}>Pattern Making</Text>
                 <Link to='/pattern-form'>
-                    <Text>Pattern Form</Text>
+                    <Text style={styles.menuButton}>Pattern Form</Text>
                 </Link>
 
                 {/* <Routes>

@@ -8,6 +8,26 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
 
+    menuTitle: {
+        color: greenFont,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: 20,
+        textTransform: 'capitalize',
+        fontSize: 35
+    },
+    menuButton: {
+        padding: 10,
+        backgroundColor: primaryBtnColor,
+        borderWidth: .5,
+        borderColor: btnFontColor,
+        color:btnFontColor,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        fontSize: 25,
+        marginBottom: 10
+    },
+
     sectionHeader: {
         width: '100%',
         color: mainBGColor,
