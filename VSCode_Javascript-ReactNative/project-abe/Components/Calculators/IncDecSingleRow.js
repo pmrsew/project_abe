@@ -30,8 +30,6 @@ export default function IncDecCalc() {
     const [result, setResult] = useState('Result will display here after calculation')
 
     function calcClick() {
-        //setResult('Calc has been clicked')
-
         const stStart = parseInt(startCount)
         const stDif = parseInt(stitchDif)
         const stEnd = endCount()
@@ -42,7 +40,7 @@ export default function IncDecCalc() {
             //negative endCount
         
         //amount of stitches from the starting row used in a single repetition
-        const repLength = stStart/stDif
+        const repLength = Math.floor(stStart/stDif)
         let resultString = ''
 
         if(stStart%stDif === 0){
@@ -66,7 +64,7 @@ export default function IncDecCalc() {
             //and keeps inc/dec pretty even across the row
             const stRepB = (incDec==='inc'?(repLength):(repLength-1))
             //a single repetition now uses more stitches from the starting row
-            const repCount = stStart/((repLength*2) + 1)
+            const repCount = Math.floor(stStart/((repLength*2) + 1))
             //since division isn't clean, there will be remaining stitches to add after repetitions
             const stRemain = stStart%((repLength*2) + 1)
 
@@ -114,8 +112,8 @@ export default function IncDecCalc() {
                 <Text style={incDecCalcStyles.resultBox}>{result}</Text>
 
                 <View style={styles.multiButtonRow}>
-                    <GenButton pressFunc={copyClick} btnText='Copy' />
-                    <View style={{ width: 10 }} />
+                    {/* <GenButton pressFunc={copyClick} btnText='Copy' />
+                    <View style={{ width: 10 }} /> */}
                     <GenButton pressFunc={resetClick} btnText='Reset' />
                 </View>
             </View>
