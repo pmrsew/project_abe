@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Image } from "react-native";
+import { NativeRouter, Route, Link, Routes } from "react-router-native";
 
 //icons imports
 import homeIcon from '../../assets/home-icon-FFFFFF.png'
@@ -8,10 +9,13 @@ import userSettingsIcon from '../../assets/user-settings-icon-FFFFFF.png'
 //styling imports
 import { navBarBGColor } from "../../AppStyling/Colors";
 
-export default function AppBarMenu(){
-    return(
+export default function AppBarMenu() {
+    return (
         <View style={appBarMenuStyles.container}>
-            <Image style={appBarMenuStyles.image} source={homeIcon} />
+            <Link to='/'>
+                <Image style={appBarMenuStyles.image} source={homeIcon} />
+            </Link>
+
             <Image style={appBarMenuStyles.image} source={userSettingsIcon} />
         </View>
     )
